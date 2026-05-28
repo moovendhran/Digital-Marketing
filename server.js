@@ -8,7 +8,7 @@ mongoose.set("bufferCommands", false); // 🔥 IMPORTANT
 
 const app = express();
 
-app.use(cors({ origin: "http://localhost:5173" }));
+app.use(cors({ origin: "https://digital-marketing-gh7b.onrender.com" }));
 app.use(express.json());
 
 // ROUTES
