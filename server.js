@@ -4,11 +4,14 @@ const express = require("express");
 const mongoose = require("mongoose");
 const cors = require("cors");
 
-mongoose.set("bufferCommands", false); // 🔥 IMPORTANT
+mongoose.set("bufferCommands", false);
 
 const app = express();
 
-app.use(cors({ origin: "https://digital-marketing-gh7b.onrender.com" }));
+app.use(cors({
+  origin: "https://digital-marketing-frontend-one.vercel.app"
+}));
+
 app.use(express.json());
 
 // ROUTES
@@ -18,10 +21,15 @@ app.use("/api/contact", require("./routes/contactRoutes"));
 mongoose
   .connect(process.env.MONGO_URL)
   .then(() => {
+
     console.log("MongoDB connected");
-    app.listen(5000, () =>
-      console.log("Server running on port 5000")
+
+    const PORT = process.env.PORT || 5000;
+
+    app.listen(PORT, () =>
+      console.log(`Server running on port ${PORT}`)
     );
+
   })
   .catch((err) => {
     console.error("MongoDB connection failed:", err.message);
